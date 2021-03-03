@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Try Api</title>
+</head>
+
+<body>
+
+    <!-- Getting information with api get request using fetch on website -->
+
+    <h1 id="activity">Activity</h1>
+    <h3>Learn form <a href="http://www.boredapi.com/api/activity/"> Visit this place</a></h3>
+
+    <!-- -------------------- The End------------------------- -->
+
+    <!-- Getting different name with api from another server on our website -->
+
+
+    <h1 id="get-name">Name</h1>
+    <!-------------------------The End--------------------------- -->
+
+
+
+
+    <script>
+        //////////////////// Getting information using json from bored activite website api ////////////////////
+        function doSomething() {
+            fetch('http://www.boredapi.com/api/activity/')
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('activity').innerText = data.activity;
+                })
+        }
+
+        doSomething();
+
+        setInterval(() => {
+            doSomething();
+        }, 10000);
+
+
+        /////////////////////////////////// End ////////////////////////////////////////////
+
+        /////////////////////////// Getting name of random people using json form server with api ///////////////////
+
+        function getName() {
+
+            fetch('https://randomuser.me/api/')
+                .then(res => res.json())
+                .then(data => {
+                    const user = data.results[0];
+                    const name = user.name;
+                    const userName = `${name.title} ${name.first} ${name.last}`
+                    document.getElementById('get-name').innerText = userName;
+                })
+
+        }
+
+        getName();
+
+        setInterval(() => {
+            getName();
+        }, 1000);
+
+
+        ////////////////////////// The End ////////////////////////////////////////////
+
+
+        /////////////////// Object can remain method, function ////////////////////////////
+
+        const normalPerson = {
+            firstName = 'Rahim',
+            lastName = 'Uddin',
+            salary = 15000,
+            //     chargedBill = function(amount) {
+            //         this.salary = this.salary - amount;
+            //         return this.salary;
+            //     }
+            // }
+
+            //  normalPerson.chargedBill(3000);
+
+        }
+
+        console.log(normalPerson.salary);
+    </script>
+
+
+
+
+</body>
+
+</html>
